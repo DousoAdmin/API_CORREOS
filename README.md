@@ -16,7 +16,10 @@ This is a new FastAPI project with database integration for managing users, send
 ## Environment Variables
 
 Copy `.env.example` to `.env` and configure:
-- `DATABASE_URL`: MySQL connection string
+- `DB_USER`: Database username
+- `DB_PASSWORD`: Database password
+- `DB_HOST`: Database host (e.g., localhost)
+- `DB_NAME`: Database name (e.g., mydb)
 - `SECRET_KEY`: Secret key for JWT
 - `ALGORITHM`: JWT algorithm (default HS256)
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: Token expiration time
