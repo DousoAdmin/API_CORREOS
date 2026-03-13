@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database import get_db
-from ..models import ConfiguracionCorreo
-from ..schemas import ConfiguracionCorreo as ConfiguracionCorreoSchema, ConfiguracionCorreoCreate, ConfiguracionCorreoUpdate
+from ..models.configuracion_correo import ConfiguracionCorreo
+from ..schemas.configuracion_correo import ConfiguracionCorreo as ConfiguracionCorreoSchema, ConfiguracionCorreoCreate, ConfiguracionCorreoUpdate
 
 router = APIRouter(prefix="/configuraciones", tags=["configuraciones"])
 

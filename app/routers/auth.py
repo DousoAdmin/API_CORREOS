@@ -6,8 +6,8 @@ import jwt
 import os
 from dotenv import load_dotenv
 from ..database import get_db
-from ..models import Usuario
-from ..schemas import UsuarioCreate, Usuario as UsuarioSchema
+from ..models.usuario import Usuario
+from ..schemas.usuario import UsuarioCreate, Usuario as UsuarioSchema
 
 load_dotenv()
 

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database import get_db
-from ..models import Remitente
-from ..schemas import Remitente as RemitenteSchema, RemitenteCreate, RemitenteUpdate
+from ..models.remitente import Remitente
+from ..schemas.remitente import Remitente as RemitenteSchema, RemitenteCreate, RemitenteUpdate
 
 router = APIRouter(prefix="/remitentes", tags=["remitentes"])
 
