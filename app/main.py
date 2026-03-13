@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .database import engine, Base
-from .routers import usuarios, remitentes, configuraciones, auth
+from .routers import usuarios, remitentes, configuraciones, auth, emails
 
 app = FastAPI()
 
@@ -12,6 +12,7 @@ app.include_router(auth.router)
 app.include_router(usuarios.router)
 app.include_router(remitentes.router)
 app.include_router(configuraciones.router)
+app.include_router(emails.router)
 
 @app.get("/")
 def read_root():
