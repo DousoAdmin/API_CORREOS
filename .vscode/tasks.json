@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run FastAPI Server",
+			"type": "shell",
+			"command": "C:/Users/jesus/AppData/Local/Programs/Python/Python313/python.exe -m uvicorn app.main:app --reload",
+			"isBackground": true,
+			"group": "build"
+		}
+	]
+}

@@ -1,10 +1,10 @@
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 - [x] Verify that the copilot-instructions.md file in the .github directory is created.
 
-- [ ] Clarify Project Requirements
+- [x] Clarify Project Requirements
 	<!-- Ask for project type, language, and frameworks if not specified. Skip if already provided. -->
 
-- [ ] Scaffold the Project
+- [x] Scaffold the Project
 	<!--
 	Ensure that the previous step has been marked as completed.
 	Call project setup tool with projectType parameter.
