@@ -27,6 +27,7 @@ class Usuario(UsuarioBase):
 
     class Config:
         from_attributes = True
+        exclude = {"contraseña"}  # Exclude password from response
 
 # Remitente schemas
 class RemitenteBase(BaseModel):

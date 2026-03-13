@@ -3,3 +3,6 @@ uvicorn[standard]
 sqlalchemy
 pymysql
 alembic
+python-dotenv
+pyjwt
+passlib[bcrypt]
