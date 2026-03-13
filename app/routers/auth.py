@@ -13,7 +13,9 @@ load_dotenv()
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# bcrypt has a maximum input length of 72 bytes.
+# Using bcrypt_sha256 avoids that limitation by pre-hashing passwords with SHA-256.
+pwd_context = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))

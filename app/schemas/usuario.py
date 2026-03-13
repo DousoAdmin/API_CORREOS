@@ -10,7 +10,10 @@ class UsuarioBase(BaseModel):
     estado: int
 
 class UsuarioCreate(UsuarioBase):
-    pass
+    nombre: str
+    email: str
+    contraseña: str
+    estado: int
 
 class UsuarioUpdate(BaseModel):
     nombre: Optional[str] = None
