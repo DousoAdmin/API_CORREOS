@@ -1,0 +1,129 @@
+# Configuración Base del Proyecto API_CORREOS
+# Fecha: 12 de marzo de 2026
+# Descripción: Este archivo contiene la configuración general y pasos para configurar y ejecutar la aplicación API_CORREOS, una API REST construida con FastAPI para gestionar usuarios, remitentes y configuraciones de correo. Sirve como guía para futuras aplicaciones similares.
+
+## Descripción General del Proyecto
+- **Framework**: FastAPI (Python)
+- **Base de Datos**: MySQL
+- **Autenticación**: JWT con hashing de contraseñas (bcrypt)
+- **Contenedor**: Docker opcional
+- **Estructura**: Modular con modelos, esquemas y routers separados
+- **Funcionalidades**: CRUD para entidades, registro/login de usuarios
+
+## Requisitos Previos
+- Python 3.11 o superior
+- MySQL Server instalado y corriendo
+- Git para control de versiones
+- Docker (opcional para contenedorización)
+- Editor de código (VS Code recomendado)
+
+## Instalación y Setup Inicial
+1. Clonar el repositorio:
+   git clone <URL_DEL_REPO>
+   cd API_CORREOS
+
+2. Crear entorno virtual (opcional pero recomendado):
+   python -m venv venv
+   venv\Scripts\activate  # En Windows
+
+3. Instalar dependencias:
+   pip install -r requirements.txt
+
+4. Configurar variables de entorno:
+   - Copiar .env.example a .env
+   - Editar .env con tus credenciales:
+     DB_USER=tu_usuario_mysql
+     DB_PASSWORD=tu_password_mysql
+     DB_HOST=localhost
+     DB_NAME=mydb
+     SECRET_KEY=tu_clave_secreta_unica
+     ALGORITHM=HS256
+     ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+5. Crear base de datos MySQL:
+   - Crear DB llamada 'mydb'
+   - Ejecutar el script SQL: scripts/base de datos.sql
+
+6. Ejecutar la aplicación:
+   uvicorn app.main:app --reload
+
+7. Acceder a la API:
+   - Docs interactivos: http://127.0.0.1:8000/docs
+   - Endpoint base: http://127.0.0.1:8000/
+
+## Estructura de Carpetas y Archivos
+```
+API_CORREOS/
+├── .env                    # Variables de entorno (no subir a repo)
+├── .env.example            # Ejemplo de variables de entorno
+├── .gitignore              # Archivos a ignorar en Git
+├── .dockerignore           # Archivos a ignorar en Docker
+├── Dockerfile              # Configuración para contenedor Docker
+├── docker-compose.yml      # Orquestación con Docker Compose
+├── requirements.txt        # Dependencias Python
+├── README.md               # Documentación del proyecto
+├── app/                    # Código principal de la aplicación
+│   ├── main.py             # Punto de entrada de FastAPI
+│   ├── database.py         # Configuración de base de datos
+│   ├── models/             # Modelos SQLAlchemy
+│   │   ├── __init__.py
+│   │   ├── usuario.py
+│   │   ├── remitente.py
+│   │   └── configuracion_correo.py
+│   ├── schemas/            # Esquemas Pydantic
+│   │   ├── __init__.py
+│   │   ├── usuario.py
+│   │   ├── remitente.py
+│   │   └── configuracion_correo.py
+│   └── routers/            # Endpoints de la API
+│       ├── __init__.py
+│       ├── auth.py         # Registro y login
+│       ├── usuarios.py
+│       ├── remitentes.py
+│       └── configuraciones.py
+├── scripts/                # Scripts auxiliares
+│   ├── base de datos.sql   # Esquema de la base de datos
+│   └── configuracion.txt   # Este archivo
+├── .vscode/                # Configuración de VS Code
+│   └── tasks.json          # Tareas para ejecutar la app
+└── .github/                # Configuración de GitHub
+    └── copilot-instructions.md
+```
+
+## Comandos Útiles
+- **Instalar dependencias**: pip install -r requirements.txt
+- **Ejecutar app local**: uvicorn app.main:app --reload
+- **Con Docker**: docker-compose up --build
+- **Crear migraciones DB** (si usas Alembic): alembic revision --autogenerate -m "Mensaje"
+- **Aplicar migraciones**: alembic upgrade head
+- **Ver logs**: docker-compose logs
+- **Detener contenedores**: docker-compose down
+
+## Configuración de Base de Datos
+- Usa MySQL con pymysql como driver
+- Las tablas se crean automáticamente al iniciar la app (Base.metadata.create_all)
+- Para producción, considera usar Alembic para migraciones
+- Variables en .env controlan la conexión
+
+## Configuración de Autenticación
+- JWT tokens con expiración configurable
+- Passwords hasheadas con bcrypt
+- Endpoints protegidos requieren token (implementar dependencias si es necesario)
+
+## Notas para Futuras Aplicaciones
+- Replicar estructura de carpetas: app/ con subcarpetas models/, schemas/, routers/
+- Usar .env para configuraciones sensibles
+- Incluir Dockerfile y docker-compose.yml para facilidad de despliegue
+- Documentar en README.md con ejemplos de uso
+- Usar Git para control de versiones desde el inicio
+- Configurar .gitignore para excluir .env, __pycache__, etc.
+- Para nuevas entidades: crear modelo, esquema y router separados
+- Mantener consistencia en naming: snake_case para archivos, CamelCase para clases
+
+## Troubleshooting
+- Error de conexión DB: Verificar credenciales en .env y que MySQL esté corriendo
+- Puerto ocupado: Cambiar puerto en comando uvicorn o docker-compose
+- Dependencias faltantes: pip install -r requirements.txt
+- Problemas con Docker: docker system prune y reconstruir
+
+Esta configuración base permite escalar la aplicación fácilmente y sirve como plantilla para proyectos similares con FastAPI.
