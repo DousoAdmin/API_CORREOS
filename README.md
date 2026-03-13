@@ -10,8 +10,16 @@ This is a new FastAPI project with database integration for managing users, send
 ## Database Setup
 
 1. Create a MySQL database named `mydb`.
-2. Update the `SQLALCHEMY_DATABASE_URL` in `app/database.py` with your MySQL credentials.
+2. Update the `DATABASE_URL` in `.env` with your MySQL credentials.
 3. Run the SQL script in `scripts/base de datos.sql` to create tables.
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+- `DATABASE_URL`: MySQL connection string
+- `SECRET_KEY`: Secret key for JWT
+- `ALGORITHM`: JWT algorithm (default HS256)
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Token expiration time
 
 ## Running the Application
 
@@ -35,6 +43,7 @@ Visit http://127.0.0.1:8000/ for the hello world endpoint.
 
 ## API Endpoints
 
+- **Auth**: `/auth/register` - Register a new user, `/auth/login` - Login and get JWT token
 - **Usuarios**: `/usuarios` - CRUD for users
 - **Remitentes**: `/remitentes` - CRUD for senders
 - **Configuraciones**: `/configuraciones` - CRUD for email configurations
